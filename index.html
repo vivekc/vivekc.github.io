@@ -3,66 +3,215 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PDF Viewer</title>
+  <title>Vivek Chaure — AWS Technical Architect</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #111;
-      color: #eee;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    :root {
+      --font: "Segoe UI", Roboto, Ubuntu, sans-serif;
+      --bg: #f3f2ef;
+      --card-bg: #ffffff;
+      --fg: #1d1d1f;
+      --muted: #666;
+      --accent: #0a66c2;
+      --line: #e0e0e0;
     }
-    .viewer {
-      height: 100vh;
-      width: 100%;
-      display: grid;
-      place-items: center;
-    }
-    /* Stack the options: object -> embed -> iframe */
-    .frame {
-      height: 100%;
-      width: 100%;
-      border: none;
-      background: #222;
-    }
-    .fallback {
-      max-width: 720px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .button {
-      display: inline-block;
-      padding: 0.75rem 1rem;
-      background: #3b82f6;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .hint {
-      opacity: 0.8;
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--fg); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: auto; padding: 20px; }
+    .card { background: var(--card-bg); border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); margin-bottom: 20px; padding: 20px; }
+    header { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    header img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
+    header .info { flex: 1; }
+    header .info h1 { margin: 0; font-size: 24px; }
+    header .info p { margin: 4px 0; color: var(--muted); }
+    .contact { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 14px; }
+    .contact i { margin-right: 6px; color: var(--accent); }
+    h2 { font-size: 18px; margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+    ul { padding-left: 20px; margin: 0; }
+    li { margin: 6px 0; }
+    .role { margin-bottom: 16px; }
+    .role-header { font-weight: 600; display: flex; justify-content: space-between; }
+    .role-meta { color: var(--muted); font-size: 13px; }
+    nav { background: var(--card-bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 1000; }
+    nav ul { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 10px 20px; gap: 20px; }
+    nav li { font-size: 14px; }
+    nav a { color: var(--fg); font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; }
+      header img { margin-bottom: 12px; }
+      .role-header { flex-direction: column; gap: 4px; }
+      nav ul { gap: 12px; }
     }
   </style>
 </head>
 <body>
-  <div class="viewer">
-    <!-- Try <object> first -->
-    <object class="frame" data="https://aws-website-indiansselfdefenceacademy-9aot2.s3.amazonaws.com/Vivek_CV.pdf#view=FitH" type="application/pdf">
-      <!-- Fallback: <embed> -->
-      <embed class="frame" src="https://aws-website-indiansselfdefenceacademy-9aot2.s3.amazonaws.com/Vivek_CV.pdf#view=FitH" type="application/pdf" />
-      <!-- Fallback: <iframe> (some mobile browsers) -->
-      <iframe class="frame" src="https://aws-website-indiansselfdefenceacademy-9aot2.s3.amazonaws.com/Vivek_CV.pdf"></iframe>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#summary"><i class="fa-solid fa-user-tie"></i> Summary</a></li>
+      <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+      <li><a href="#skills"><i class="fa-solid fa-lightbulb"></i> Skills</a></li>
+      <li><a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a></li>
+      <li><a href="#certifications"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+      <li><a href="#details"><i class="fa-solid fa-id-card"></i> Details</a></li>
+    </ul>
+  </nav>
 
-      <!-- Final fallback: direct link -->
-      <div class="fallback">
-        <h1>Open PDF</h1>
-        <p>If the PDF doesn’t display, use the button below to open it in your device’s viewer.</p>
-        <a class="button" href="https://aws-website-indiansselfdefenceacademy-9aot2.s3.amazonaws.com/Vivek_CV.pdf" target="_blank" rel="noopener">Open or download</a>
-        <p class="hint">Tip: On iOS, tapping “Open” will show it in the Files/Preview app.</p>
+  <div class="container">
+
+    <!-- Profile Header -->
+    <div class="card">
+      <header>
+        <img src="1765285821798.jpeg" style="" alt="Profile photo">
+        <div class="info">
+          <h1>Vivek Chaure</h1>
+          <p>AWS Technical Architect | Cloud-Native & Serverless Solutions</p>
+          <div class="contact">
+            <div><i class="fa-solid fa-phone"></i> +91 96197 98020</div>
+            <div><i class="fa-solid fa-envelope"></i> <a href="mailto:vivek.chaure@gmail.com">vivek.chaure@gmail.com</a></div>
+            <div><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/vivekchaure">linkedin.com/in/vivekchaure</a></div>
+            <div><i class="fa-brands fa-github"></i> <a href="https://github.com/vivekchaure">github.com/vivekchaure</a></div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Summary -->
+    <div class="card" id="summary">
+      <h2><i class="fa-solid fa-user-tie"></i> Professional Summary</h2>
+      <p>
+        AWS Technical Architect with 14+ years of experience designing and delivering cloud-native, serverless,
+        and data-driven solutions across aerospace, FMCG, healthcare, and energy sectors. Proven expertise in
+        architecting scalable platforms using AWS services like Lambda, ECS, Glue, DynamoDB, and CloudFormation.
+      </p>
+    </div>
+
+    <!-- Education -->
+    <div class="card" id="education">
+      <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+      <ul>
+        <li>M.Tech in Computer Science & Engineering, IIT Kharagpur, 2009</li>
+        <li>B.E. in Computer Science, SGGS College of Engg & Tech, 2005</li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="card" id="skills">
+      <h2><i class="fa-solid fa-lightbulb"></i> Skills</h2>
+      <ul>
+        <li>Programming &amp; Scripting: Python, NodeJS, Java, PHP, HTML, JavaScript, jQuery, AngularJS, BASH</li>
+        <li>Frameworks &amp; Libraries: Django, Flask, ReactJS, RabbitMQ, Apache Solr</li>
+        <li>Databases &amp; Data Stores: MySQL, PostgreSQL, MS SQL, Oracle, Redis, MongoDB, DynamoDB</li>
+        <li>Cloud Platforms &amp; Services: AWS (Lambda, ECS, Glue, DynamoDB, CloudFormation, etc.), Azure (Functions, Cosmos DB, etc.)</li>
+        <li>DevOps, CI/CD &amp; Automation: Git, JIRA, Terraform, Docker, Kubernetes, Ansible</li>
+        <li>Operating Systems: Linux (Ubuntu, CentOS, RHEL), MacOS</li>
+      </ul>
+    </div>
+
+    <!-- Experience -->
+    <div class="card" id="experience">
+      <h2><i class="fa-solid fa-briefcase"></i> Manager | Capgemini India Pvt Ltd</h2>
+      <div class="role">
+        <div class="role-header">
+          <span>AWS Architect and lead | GE Aerospace</span>
+          <span class="role-meta">Jul 2024 – Present</span>
+        </div>
+        <p>Designed and implemented data analytics and reporting solutions, serverless AWS apps, and observability workflows.</p>
       </div>
-    </object>
-  </div>
-</body>
-</html>
+      <div class="role">
+        <div class="role-header">
+          <span>Offshore Delivery Lead | The Coca-Cola Company</span>
+          <span class="role-meta">Apr 2021 – Jun 2024</span>
+        </div>
+        <p>Redesigned Disaster Recovery with active-active AWS architecture, streamlined Data Fabric, and led a team of 11 FTEs.</p>
+      </div>
+      <!-- Add more roles as needed -->
+	  <div class="role">
+        <div class="role-header">
+          <span>Team Lead | Biogen</span>
+          <span class="role-meta">May 2020 – Mar 2021</span>
+        </div>
+        <p>Led development of serverless solutions using Python on AWS, building efficient search indexing capabilities for medical repositories.</p>
+      </div>
+	  <!-- Add more roles as needed -->
+	  <div class="role">
+        <div class="role-header">
+          <span>Team Lead | GE Power</span>
+          <span class="role-meta">Aug 2019 – Apr 2020</span>
+        </div>
+        <p>Developed serverless components to visualize unmanaged device usage and orchestrated data ingestion with AWS Lambda.</p>
+      </div>
+
+      <!-- Add more roles as needed -->
+	  <div class="role">
+        <div class="role-header">
+          <span>Team Lead | American Bureau of Shipping</span>
+          <span class="role-meta">Feb 2019 – Jun 2019</span>
+        </div>
+        <p>Orchestrated Data Science algorithms for classification and NLP using Azure Functions and Web Jobs.</p>
+      </div>
+	  
+	  <!-- Add more roles as needed -->
+	  <div class="role">
+        <div class="role-header">
+          <span>Python Team Lead | Volkswagen Group Sales Pvt Ltd</span>
+          <span class="role-meta">Sep 2017 – Dec 2018</span>
+        </div>
+        <p>Enhanced workshop management system, delivered on-site support, and streamlined bug tracking and release management.</p>
+      </div>
+	</div>	
+	<div class="card" id="experience">
+      <h2><i class="fa-solid fa-briefcase"></i> Just Buy Live Enterprise Pvt Ltd</h2> 
+      <div class="role">
+        <div class="role-header">
+          <span>Software Development Engineer-III</span>
+          <span class="role-meta">Mar 2016 – Aug 2017</span>
+        </div>
+        <p>Designed and developed Supply Chain and Warehouse Management modules for a B2B platform using Python on AWS.</p>
+      </div>
+	</div>
+	<div class="card" id="experience">
+      <h2><i class="fa-solid fa-briefcase"></i> Amkri Tech Solutions Pvt Ltd</h2>    
+	  <div class="role">
+        <div class="role-header">
+          <span>Team Lead</span>
+          <span class="role-meta">Apr 2014 – Mar 2016</span>
+        </div>
+        <p>Led offshore product development of Python-based enterprise applications for a US client, designed RESTful APIs, and configured AWS environments.</p>
+      </div>
+	</div>
+    <div class="card" id="experience">
+      <h2><i class="fa-solid fa-briefcase"></i> AdElement Media Solutions Pvt Ltd</h2>
+	  <div class="role">
+        <div class="role-header">
+          <span>Software Engineer</span>
+          <span class="role-meta">Jun 2011 – Apr 2014</span>
+        </div>
+        <p>Developed ad campaign interfaces, Python scripts for data ingestion, and a recommendation engine for dynamic product selection.</p>
+      </div>
+	</div>
+	
+    <div class="card" id="experience">
+      <h2><i class="fa-solid fa-briefcase"></i> IIT Bombay</h2>  
+	  <div class="role">
+        <div class="role-header">
+          <span>Temp. Software Engineer</span>
+          <span class="role-meta">Oct 2010 – Apr 2011</span>
+        </div>
+        <p>Built web-based visualization tools for cyclone track clusters and developed a reusable Web GIS framework.</p>
+      </div>
+	  
+    </div>
+
+    <!-- Certifications -->
+    <div class="card" id="certifications">
+      <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
+      <ul>
+        <li>AWS Partner: Generative AI Essentials, 2024</li>
+		<li>IBM Certified Application Developer - Watson V3 Certification, 2017</li>
+	  </ul>
+	</div>
