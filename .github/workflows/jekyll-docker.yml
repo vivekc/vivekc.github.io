@@ -8,13 +8,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - uses: actions/checkout@v4
+      
+      - name: Build the site in the jekyll container
+        run: |
+          # run the container with the repository mounted at the same path the runner uses
+          docker run --rm -u $(id -u):$(id -g) \
+            -v "${{ github.workspace }}:/github/workspace:rw" \
+            -v "${{ github.workspace }}/_site:/github/workspace/_site:rw" \
+            -w /github/workspace \
+            jekyll/jekyll:4.4.0 /bin/bash -lc "gem install bundler --no-document && bundle install --path vendor/bundle && bundle exec jekyll build --future --destination _site"
